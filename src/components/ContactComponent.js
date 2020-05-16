@@ -42,8 +42,7 @@ class Contact extends Component {
     
 
     handleSubmit(values) {
-        console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+        this.props.postFeedback(values);
         this.props.resetFeedbackForm();
     }
     
@@ -63,7 +62,6 @@ class Contact extends Component {
                         <hr />
                     </div>
                 </div>
-
                 <div className="row row-content align-items-center">
                     <div className="col-sm-4">
                         <h5>Our Address</h5>
@@ -74,11 +72,10 @@ class Contact extends Component {
                         </address>
                     </div>
                     <div className="col">
-                        <a role="button" className="btn btn-link" href="tel:+12065551234"><i className="fa fa-phone"></i> 1-206-555-1234</a><br />
-                        <a role="button" className="btn btn-link" href="mailto:fakeemail@fakeemail.co"><i className="fa fa-envelope-o"></i> campsites@nucamp.co</a>
+                        <a role="button" className="btn btn-link" href="tel:+12065551234"><i className="fa fa-phone" /> 1-206-555-1234</a><br />
+                        <a role="button" className="btn btn-link" href="mailto:fakeemail@fakeemail.co"><i className="fa fa-envelope-o" /> campsites@nucamp.co</a>
                     </div>
                 </div>
-
                 <div className="row row-content">
                    <div className="col-12">
                       <h2>Send us your Feedback</h2>
@@ -89,12 +86,12 @@ class Contact extends Component {
                             <Row className="form-group">
                                 <Label htmlFor="firstName" md={2}>First Name</Label>
                                 <Col md={10}>
-                                <Control.text model=".firstName" id="firstName" name="firstName"
+                                    <Control.text model=".firstName" id="firstName" name="firstName"
                                         placeholder="First Name"
                                         className="form-control"
                                         validators={{
                                             required, 
-                                            minLength: minLength(2),
+                                            minLength: minLength(2), 
                                             maxLength: maxLength(15)
                                         }}
                                     />
@@ -118,8 +115,8 @@ class Contact extends Component {
                                         placeholder="Last Name"
                                         className="form-control"
                                         validators={{
-                                            required,
-                                            minLength: minLength(2),
+                                            required, 
+                                            minLength: minLength(2), 
                                             maxLength: maxLength(15)
                                         }}
                                     />
@@ -143,12 +140,11 @@ class Contact extends Component {
                                         placeholder="Phone number"
                                         className="form-control"
                                         validators={{
-                                            required,
-                                            minLength: minLength(10),
-                                            maxLength: maxLength(15),
-                                            isNumber
+                                            required, 
+                                            minLength: minLength(10), 
+                                            maxLength: maxLength(15), isNumber
                                         }}
-                                    />
+                                         />
                                     <Errors
                                         className="text-danger"
                                         model=".phoneNum"
@@ -170,7 +166,7 @@ class Contact extends Component {
                                         placeholder="Email"
                                         className="form-control"
                                         validators={{
-                                            required,
+                                            required, 
                                             validEmail
                                         }}
                                     />
@@ -181,9 +177,30 @@ class Contact extends Component {
                                         component="div"
                                         messages={{
                                             required: 'Required',
-                                            validEmail: 'Invalid email address'
+                                            validEmail: 'Invalid Email Address'
                                         }}
-                                    />
+                                     />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Col md={{size: 4, offset: 2}}>
+                                    <div className="form-check">
+                                        <Label check>
+                                            <Control.checkbox
+                                                model=".agree"
+                                                name="agree"
+                                                className="form-check-input"
+                                            /> {' '}
+                                            <strong>May we contact you?</strong>
+                                        </Label>
+                                    </div>
+                                </Col>
+                                <Col md={4}>
+                                    <Control.select model=".contactType" name="contactType"
+                                        className="form-control">
+                                        <option>By Phone</option>
+                                        <option>By Email</option>
+                                    </Control.select>
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -207,7 +224,6 @@ class Contact extends Component {
                 </div>
             </div>
         );
-    }    
+    }
 }
-
 export default Contact;
